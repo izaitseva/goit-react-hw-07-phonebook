@@ -2,7 +2,7 @@ import React from "react";
 import { nanoid } from 'nanoid';
 
 export class Phonebook extends React.Component {
-    
+
     state = {
         contacts: [],
         name: ''
@@ -10,21 +10,21 @@ export class Phonebook extends React.Component {
 
     nameInputId = nanoid();
 
-
     handleChange = e => {
-        const {name, value} = e.currentTarget;
+        const { name, value } = e.currentTarget;
 
-        this.setState({ [name]: value});
+        this.setState({ [name]: value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
         this.props.onSubmit(this.state.name);
-        this.reset()
+
+        // this.setState(<p>check ${this.name}</p>)
     }
 
     reset = () => {
-        this.setState({name: ''})
+        this.setState({ name: '' })
     }
 
     render() {
@@ -43,9 +43,10 @@ export class Phonebook extends React.Component {
                         required
                         id={this.nameInputId}
                     />
-                    <button>Add contact</button>
+                    <button type="submit">Add contact</button>
                 </form>
                 <h2>Contacts</h2>
+                <p>check{this.state.name}</p>
             </div>
 
         )
