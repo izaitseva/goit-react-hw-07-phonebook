@@ -20,7 +20,9 @@ export class Phonebook extends React.Component {
         event.preventDefault();
         this.props.onSubmit(this.state.name);
 
-        // this.setState(<p>check ${this.name}</p>)
+        this.setState(
+            (this.state.value)
+        )
     }
 
     reset = () => {
@@ -36,7 +38,7 @@ export class Phonebook extends React.Component {
                     <input
                         type="text"
                         name="name"
-                        value={this.state.name}
+                        value={this.state.value}
                         onChange={this.handleChange}
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -46,7 +48,7 @@ export class Phonebook extends React.Component {
                     <button type="submit">Add contact</button>
                 </form>
                 <h2>Contacts</h2>
-                <p>check{this.state.name}</p>
+                <p onSubmit={this.handleSubmit}>check</p>
             </div>
 
         )
