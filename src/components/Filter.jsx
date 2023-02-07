@@ -12,8 +12,6 @@ export class Filter extends React.Component {
 
         return (
             <div>
-
-                <h2>Contacts</h2>
                 <p>Find contacts by name</p>
                 <input
                     type="text"
