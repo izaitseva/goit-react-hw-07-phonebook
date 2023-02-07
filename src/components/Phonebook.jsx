@@ -11,18 +11,23 @@ export class Phonebook extends React.Component {
     nameInputId = nanoid();
 
     handleChange = e => {
-        const { name, value } = e.currentTarget;
+        const { value } = e.currentTarget;
 
-        this.setState({ [name]: value });
+        this.setState({ name: value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.onSubmit(this.state.name);
+        const contacts = this.state.contacts;
+        
+        contacts.push({
+            id: nanoid(),
+            name: this.state.name
+        });
 
-        this.setState(
-            (this.state.value)
-        )
+        this.setState({
+            contacts: contacts
+        })
     }
 
     reset = () => {
@@ -48,7 +53,11 @@ export class Phonebook extends React.Component {
                     <button type="submit">Add contact</button>
                 </form>
                 <h2>Contacts</h2>
-                <p onSubmit={this.handleSubmit}>check</p>
+                <ul>
+                    {
+                        this.state.contacts.map(el => (<li key={el.id}>{el.name}</li>))
+                    }
+                </ul>
             </div>
 
         )
