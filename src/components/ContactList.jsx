@@ -9,7 +9,9 @@ export class ContactList extends React.Component {
             {
                 this.props.contactsList.map(
                     el => (<li key={el.id}>{el.name}: {el.number}
-                        <button>Delete</button>
+                        <button onClick={() => {
+                            this.props.removeContacts(el.id)
+                        }}>Delete</button>
                     </li>)
                 )
             }
