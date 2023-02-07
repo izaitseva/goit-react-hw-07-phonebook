@@ -20,15 +20,20 @@ export class App extends React.Component {
   contactsPush = (name, number) => {
     const contacts = this.state.contacts;
 
-    contacts.push({
-      id: nanoid(),
-      name: name,
-      number: number
-    })
-
-    this.setState({
-      contacts: contacts
-    })
+    if(contacts.some(el=> el.name === name)) {
+      alert(`${name} is already in contacts`)
+      
+    } else {
+      contacts.push({
+        id: nanoid(),
+        name: name,
+        number: number
+      })
+  
+      this.setState({
+        contacts: contacts
+      })
+    }
   }
 
   filterContacts = (filter) => {
