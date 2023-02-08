@@ -5,7 +5,6 @@ import contacts from "./contacts.json";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";
 import { ContactForm } from "./ContactForm";
-import { PropTypes } from "prop-types";
 
 export class App extends React.Component {
 
