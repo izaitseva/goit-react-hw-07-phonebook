@@ -15,7 +15,6 @@ export class ContactForm extends React.Component {
 
     handleChangeNumb = e => {
         const { value } = e.currentTarget;
-
         this.setState({ number: value });
     }
 
@@ -60,8 +59,6 @@ export class ContactForm extends React.Component {
 
 }
 
-
 ContactForm.propTypes = {
-    name: PropTypes.string,
-    number: PropTypes.number,
+    contactsPush: PropTypes.func.isRequired
 }

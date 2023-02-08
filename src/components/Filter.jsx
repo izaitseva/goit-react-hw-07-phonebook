@@ -1,9 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export class Filter extends React.Component {
 
     handleChangeFilter = e => {
-
         const { value } = e.currentTarget;
         this.props.filterContacts(value);
     }
@@ -22,6 +22,8 @@ export class Filter extends React.Component {
 
         )
     }
-
 }
 
+Filter.propTypes = {
+    filterContacts: PropTypes.func.isRequired
+}

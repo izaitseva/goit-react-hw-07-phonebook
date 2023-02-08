@@ -5,35 +5,37 @@ import contacts from "./contacts.json";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";
 import { ContactForm } from "./ContactForm";
+import { PropTypes } from "prop-types";
 
 export class App extends React.Component {
 
   state = {
-    contacts,
+    contacts: contacts,
     filter: ''
   }
 
   contactsPush = (name, number) => {
-    const contacts = this.state.contacts;
-
-    if (contacts.some(el => el.name === name)) {
+    if (this.state.contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`)
 
     } else {
-      contacts.push({
+
+      this.setState(prevState => {
+
+      let contact = {
         id: nanoid(),
         name: name,
         number: number
-      })
+      };
 
-      this.setState({
-        contacts: contacts
-      })
+      return {
+        contacts: [...prevState.contacts, contact]
+      }
+    })
     }
   }
 
   removeContacts = contactId => {
-    console.log(contactId);
 
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
@@ -47,11 +49,13 @@ export class App extends React.Component {
     })
   }
 
-  render() {
-
-    const filteredContacts = this.state.contacts.filter(
+  getFilteredContacts = () => {
+    return this.state.contacts.filter(
       (el) => el.name.toLowerCase().includes(this.state.filter.toLowerCase())
     )
+  }
+
+  render() {
 
     return (
       <div>
@@ -60,7 +64,7 @@ export class App extends React.Component {
 
         <h2>Contacts</h2>
         <Filter filterContacts={this.filterContacts} />
-        <ContactList contactsList={filteredContacts} removeContacts={this.removeContacts} />
+        <ContactList contactsList={this.getFilteredContacts()} removeContacts={this.removeContacts} />
       </div>
 
     );
