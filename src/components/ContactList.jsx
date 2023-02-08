@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export class ContactList extends React.Component {
     
     render() {
@@ -7,7 +7,7 @@ export class ContactList extends React.Component {
         return (
             <ul>
             {
-                this.props.contactsList.map(
+                this.props.contactsList.map( 
                     el => (<li key={el.id}>{el.name}: {el.number}
                         <button onClick={() => {
                             this.props.removeContacts(el.id)
@@ -20,3 +20,7 @@ export class ContactList extends React.Component {
     }
 
 }
+
+ContactList.propTypes = {
+    id: PropTypes.string,
+  }

@@ -1,5 +1,6 @@
 import React from "react"
 import { nanoid } from 'nanoid';
+
 import contacts from "./contacts.json";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";

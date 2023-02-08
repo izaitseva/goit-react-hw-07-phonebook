@@ -25,4 +25,3 @@ export class Filter extends React.Component {
 
 }
 
-
