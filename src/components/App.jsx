@@ -9,7 +9,7 @@ import { ContactForm } from "./ContactForm";
 export class App extends React.Component {
 
   state = {
-    contacts: contacts,
+    contacts: [],
     filter: ''
   }
 
