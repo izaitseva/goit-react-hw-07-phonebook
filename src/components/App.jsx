@@ -1,7 +1,7 @@
 import React from "react"
 import { nanoid } from 'nanoid';
 
-import contacts from "./contacts.json";
+// import contacts from "./contacts.json";
 import { Filter } from "./Filter";
 import { ContactList } from "./ContactList";
 import { ContactForm } from "./ContactForm";
@@ -12,6 +12,11 @@ export class App extends React.Component {
     contacts: [],
     filter: ''
   }
+
+  componentDidUpdate (prevProps, prevState) {
+      this.state.setItem('contacts', JSON.stringify(this.state.contacts))
+}
+
 
   contactsPush = (name, number) => {
     if (this.state.contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
