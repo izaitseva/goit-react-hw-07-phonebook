@@ -47,10 +47,6 @@ export class App extends React.Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   localStorage.removeItem('contacts');
-  // }
-
   removeContacts = contactId => {
 
     this.setState(prevState => ({
