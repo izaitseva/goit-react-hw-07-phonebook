@@ -25,7 +25,7 @@ export class ContactForm extends React.Component {
     }
 
     reset = () => {
-        this.setState({ name: '', number:'' })
+        this.setState({ name: '', number: '' })
     }
 
     render() {
@@ -56,7 +56,6 @@ export class ContactForm extends React.Component {
             </form>
         )
     }
-
 }
 
 ContactForm.propTypes = {

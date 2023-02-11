@@ -13,11 +13,19 @@ export class App extends React.Component {
     filter: ''
   }
 
-  componentDidUpdate (prevProps, prevState) {
-      this.state.setItem('contacts', JSON.stringify(this.state.contacts))
-}
+  componentDidMount() {
+    this.setState({
+      contacts: JSON.parse(localStorage.getItem("contacts"))
+    })
+  }
 
+  componentDidUpdate(prevProps, prevState) {
 
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+
+  }
   contactsPush = (name, number) => {
     if (this.state.contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`)
@@ -26,18 +34,22 @@ export class App extends React.Component {
 
       this.setState(prevState => {
 
-      let contact = {
-        id: nanoid(),
-        name: name,
-        number: number
-      };
+        let contact = {
+          id: nanoid(),
+          name: name,
+          number: number
+        };
 
-      return {
-        contacts: [...prevState.contacts, contact]
-      }
-    })
+        return {
+          contacts: [...prevState.contacts, contact]
+        }
+      })
     }
   }
+
+  // componentWillUnmount() {
+  //   localStorage.removeItem('contacts');
+  // }
 
   removeContacts = contactId => {
 
