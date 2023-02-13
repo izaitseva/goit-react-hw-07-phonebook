@@ -14,9 +14,13 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      contacts: JSON.parse(localStorage.getItem("contacts"))
-    })
+
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -73,7 +77,6 @@ export class App extends React.Component {
       <div>
         <h1>Phonebook</h1>
         <ContactForm contactsPush={this.contactsPush} />
-
         <h2>Contacts</h2>
         <Filter filterContacts={this.filterContacts} />
         <ContactList contactsList={this.getFilteredContacts()} removeContacts={this.removeContacts} />
