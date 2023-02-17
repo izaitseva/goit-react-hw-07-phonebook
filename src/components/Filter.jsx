@@ -1,27 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export class Filter extends React.Component {
+export default function Filter({ filterContacts }) {
 
-    handleChangeFilter = e => {
+    const handleChangeFilter = e => {
         const { value } = e.currentTarget;
-        this.props.filterContacts(value);
+        filterContacts(value);
     }
 
-    render() {
+    return (
+        <div>
+            <p>Find contacts by name</p>
+            <input
+                type="text"
+                name="filter"
+                onChange={handleChangeFilter}
+            />
+        </div>
 
-        return (
-            <div>
-                <p>Find contacts by name</p>
-                <input
-                    type="text"
-                    name="filter"
-                    onChange={this.handleChangeFilter}
-                />
-            </div>
-
-        )
-    }
+    )
 }
 
 Filter.propTypes = {
