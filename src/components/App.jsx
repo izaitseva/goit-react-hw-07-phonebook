@@ -7,62 +7,32 @@ import ContactForm from "./ContactForm";
 
 export default function App() {
 
-  const [contacts, set] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-    if (prevState.contacts !== contacts) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
-
-  }
-  contactsPush = (name, number) => {
+  const contactsPush = (name, number) => {
     if (contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`)
 
     } else {
+      const newContact = {
+        id: nanoid(), name, number
+      }
 
-      this.setState(prevState => {
-
-        let contact = {
-          id: nanoid(),
-          name: name,
-          number: number
-        };
-
-        return {
-          contacts: [...prevState.contacts, contact]
-        }
-      })
+      setContacts(prevState => [...prevState, newContact]);
     }
   }
 
-  removeContacts = contactId => {
-
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }))
+  const removeContacts = contactId => {
+    setContacts(prevState => prevState.contacts.filter(contact => contact.id !== contactId))
   };
 
-  filterContacts = (filter) => {
-
-    this.setState({
-      filter: filter
-    })
+  const filterContacts = (filter) => {
+    setFilter(filter);
   }
 
   const getFilteredContacts = () => {
+
     return contacts.filter(
       (el) => el.name.toLowerCase().includes(filter.toLowerCase())
     )
@@ -72,10 +42,10 @@ export default function App() {
     <div>
       <h1>Phonebook</h1>
       <ContactForm contactsPush={contactsPush} />
+
       <h2>Contacts</h2>
       <Filter filterContacts={filterContacts} />
       <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts} />
     </div>
-
   );
 }
