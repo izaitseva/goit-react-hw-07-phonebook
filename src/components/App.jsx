@@ -1,15 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import { nanoid } from 'nanoid';
 
 import Filter from "./Filter";
 import ContactList from "./ContactList";
 import ContactForm from "./ContactForm";
-export class App extends React.Component {
 
-  state = {
-    contacts: [],
-    filter: ''
-  }
+export default function App() {
+
+  const [contacts, set] = useState([]);
+  const [filter, setFilter] = useState('');
 
   componentDidMount() {
 
@@ -23,13 +22,13 @@ export class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
 
   }
   contactsPush = (name, number) => {
-    if (this.state.contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
+    if (contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`)
 
     } else {
@@ -63,23 +62,20 @@ export class App extends React.Component {
     })
   }
 
-  getFilteredContacts = () => {
-    return this.state.contacts.filter(
-      (el) => el.name.toLowerCase().includes(this.state.filter.toLowerCase())
+  const getFilteredContacts = () => {
+    return contacts.filter(
+      (el) => el.name.toLowerCase().includes(filter.toLowerCase())
     )
   }
 
-  render() {
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm contactsPush={contactsPush} />
+      <h2>Contacts</h2>
+      <Filter filterContacts={filterContacts} />
+      <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts} />
+    </div>
 
-    return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm contactsPush={this.contactsPush} />
-        <h2>Contacts</h2>
-        <Filter filterContacts={this.filterContacts} />
-        <ContactList contactsList={this.getFilteredContacts()} removeContacts={this.removeContacts} />
-      </div>
-
-    );
-  }
-};
+  );
+}
