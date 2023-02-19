@@ -7,15 +7,11 @@ import ContactForm from "./ContactForm";
 
 export default function App() {
 
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
+  const [contacts, setContacts] = useState(() => {
     const storedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (storedContacts) {
-      setContacts(storedContacts);
-    }
-  }, [])
+    return storedContacts ?? [];
+  });
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
