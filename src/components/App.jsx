@@ -52,7 +52,7 @@ export default function App() {
 
       <h2>Contacts</h2>
       <Filter filterContacts={filterContacts} />
-      <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts} key={contacts.id} />
+      <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts}/>
     </div>
   );
 }
