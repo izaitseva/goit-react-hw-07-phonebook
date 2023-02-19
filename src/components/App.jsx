@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { nanoid } from 'nanoid';
 
 import Filter from "./Filter";
@@ -9,6 +9,17 @@ export default function App() {
 
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (storedContacts) {
+      setContacts(storedContacts);
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts])
 
   const contactsPush = (name, number) => {
     if (contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
@@ -24,7 +35,7 @@ export default function App() {
   }
 
   const removeContacts = contactId => {
-    setContacts(prevState => prevState.contacts.filter(contact => contact.id !== contactId))
+    setContacts(prevState => prevState.filter(contact => contact.id !== contactId))
   };
 
   const filterContacts = (filter) => {
@@ -45,7 +56,7 @@ export default function App() {
 
       <h2>Contacts</h2>
       <Filter filterContacts={filterContacts} />
-      <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts} />
+      <ContactList contactsList={getFilteredContacts()} removeContacts={removeContacts} key={contacts.id} />
     </div>
   );
 }
