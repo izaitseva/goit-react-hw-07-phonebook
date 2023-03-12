@@ -1,7 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "./contacts.slice";
+import { addContact, deleteContact } from "./contacts.slice";
 
 export const Contacts = () => {
 
@@ -26,6 +26,10 @@ export const Contacts = () => {
         dispatch(addContact(newContact));
         setNewContactName('');
         setNewContactNumb('');
+    }
+
+    const onDeleteContact = (id) => {
+        dispatch(deleteContact(id));
     }
 
     return (
@@ -59,7 +63,7 @@ export const Contacts = () => {
                         {
                             contacts.map((contact) => (
                                 <li key={contact.id}>{contact.name}:{contact.number}
-                                    <button>Delete</button>
+                                    <button onClick={() => onDeleteContact(contact.id)}>Delete</button>
                                 </li>
                             ))}
                     </ul>

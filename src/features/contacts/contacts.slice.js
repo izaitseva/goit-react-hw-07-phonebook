@@ -10,14 +10,22 @@ const contactsSlice = createSlice({
     initialState,
     reducers: {
         addContact: (state, action) => {
-            // debugger;
+            //     state.contacts.push(action.payload);
+            // },
             return {
                 ...state,
                 contacts: [...state.contacts, action.payload],
-            };
+            }
+        },
+
+        deleteContact: (state, action) => {
+            state.contacts = state.contacts.filter(
+                (contact) => contact.id !== action.payload
+            );
         }
     }
 });
 
-export const { addContact } = contactsSlice.actions;
+
+export const { addContact, deleteContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
