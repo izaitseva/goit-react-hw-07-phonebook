@@ -27,7 +27,7 @@ const CreateContacts = () => {
 
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h3>Phonebook</h3>
             <input
                 placeholder="Enter the contact name"
                 type="text"

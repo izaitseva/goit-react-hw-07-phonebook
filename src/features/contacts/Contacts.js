@@ -15,8 +15,8 @@ export const Contacts = () => {
                 {contacts.length === 0
                     ? <p>You don't have contacts yet</p>
                     : <>
-                        <FilterContacts />
                         <ContactsList />
+                        <FilterContacts />
                     </>
                 }
             </div>
