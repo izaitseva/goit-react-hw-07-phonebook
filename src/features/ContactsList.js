@@ -24,7 +24,7 @@ const ContactsList = () => {
                     ))}
                 </ul>
             ) : (
-                <p>Error</p>
+                <p>There are no contacts to show</p>
             )}
 
         </>
