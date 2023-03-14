@@ -1,12 +1,14 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { addContact } from "../../store/contacts.slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateContacts = () => {
 
     const [newContactNumb, setNewContactNumb] = useState("");
     const [newContactName, setNewContactName] = useState("");
+    const contacts = useSelector((state => state.contacts.contacts));
+    
     const dispatch = useDispatch();
 
     const handleContactName = e => {
@@ -18,12 +20,17 @@ const CreateContacts = () => {
     }
 
     const onAddContact = () => {
-        const newContact = { id: nanoid(), name: newContactName, number: newContactNumb }
-        dispatch(addContact(newContact));
-        setNewContactName('');
-        setNewContactNumb('');
+        if (newContactName.trim() !== '' && newContactNumb.trim() !== '') {
+            if (contacts.some(el => el.name.toLowerCase() === newContactName.toLowerCase())) {
+                alert(`${newContactName} is already in contacts`)
+            } else {
+                const newContact = { id: nanoid(), name: newContactName, number: newContactNumb }
+                dispatch(addContact(newContact));
+                setNewContactName('');
+                setNewContactNumb('');
+            }
+        }
     }
-
 
     return (
         <div>
@@ -49,7 +56,7 @@ const CreateContacts = () => {
                 required
             />
             <button onClick={onAddContact} type="submit">Add contact</button>
-        </div>
+        </div >
     )
 }
 
