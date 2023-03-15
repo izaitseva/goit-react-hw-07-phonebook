@@ -1,4 +1,6 @@
 import { deleteContact } from "../store/contacts.slice";
+import "./ContactList.css";
+import { BsPersonDashFill } from "react-icons/bs";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectFilteredContacts } from "store/selectors";
@@ -14,15 +16,28 @@ const ContactsList = () => {
         <>
 
             {filteredContacts && filteredContacts.length > 0 ? (
-                <ul>
+                <>
                     <h3>Contacts</h3>
-                    {filteredContacts.map((contact) => (
-                        <li key={contact.id}>
-                            {contact.name}:{contact.number}
-                            <button onClick={() => onDeleteContact(contact.id)}>Delete</button>
-                        </li>
-                    ))}
-                </ul>
+                    <ul className="list">
+                        {filteredContacts.map((contact) => (
+                            <li className="list_item" key={contact.id}>
+                                <div className="contact-info">
+                                    <div className="contact-info_name">
+                                        <small className="contact-info_label">Name:</small>
+                                        <span>{contact.name}</span>
+                                    </div>
+                                    <div className="contact-info_number">
+                                        <small className="contact-info_label">Number:</small>
+                                        <span>{contact.number}</span>
+                                    </div>
+                                </div>
+                                <button className="delete-btn" onClick={() => onDeleteContact(contact.id)}>
+                                    <BsPersonDashFill />
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </>
             ) : (
                 <p>There are no contacts to show</p>
             )}
