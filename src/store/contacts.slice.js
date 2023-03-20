@@ -1,7 +1,12 @@
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-    contacts: [],
+    contacts: {
+        items: [],
+        isLoading: false,
+        error: null
+    },
     filter: ""
 };
 
