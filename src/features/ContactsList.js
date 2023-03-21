@@ -1,9 +1,9 @@
-import { deleteContact } from "../store/contacts.slice";
-import "./ContactList.css";
-import { BsPersonDashFill } from "react-icons/bs";
-
 import { useSelector, useDispatch } from "react-redux";
+import { BsPersonDashFill } from "react-icons/bs";
+import "./ContactList.css";
+import { deleteContact } from "../store/contacts.slice";
 import { selectFilteredContacts } from "store/selectors";
+
 const ContactsList = () => {
     const filteredContacts = useSelector(selectFilteredContacts);
 
