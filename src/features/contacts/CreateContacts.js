@@ -48,7 +48,7 @@ const CreateContacts = () => {
                     required
                 />
                 <input className="input"
-                    placeholder="Enter the contact number'"
+                    placeholder="Enter the contact phone'"
                     type="tel"
                     name="number"
                     value={newContactNumb}

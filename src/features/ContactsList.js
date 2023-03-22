@@ -1,14 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { BsPersonDashFill } from "react-icons/bs";
 import "./ContactList.css";
-import { deleteContact } from "../store/contacts.slice";
+import { deleteContact } from "store/contactsAPI";
+
 import { selectFilteredContacts } from "store/selectors";
 
 const ContactsList = () => {
     const filteredContacts = useSelector(selectFilteredContacts);
 
     const dispatch = useDispatch();
-    const onDeleteContact = (id) => {
+    const onDeleteContacts = (id) => {
         dispatch(deleteContact(id));
     }
 
@@ -27,10 +28,10 @@ const ContactsList = () => {
                                     </div>
                                     <div className="contact-info_number">
                                         <small className="contact-info_label">Number:</small>
-                                        <span>{contact.number}</span>
+                                        <span>{contact.phone}</span>
                                     </div>
                                 </div>
-                                <button className="delete-btn" onClick={() => onDeleteContact(contact.id)}>
+                                <button className="delete-btn" onClick={() => onDeleteContacts(contact.id)}>
                                     <BsPersonDashFill />
                                 </button>
                             </li>
