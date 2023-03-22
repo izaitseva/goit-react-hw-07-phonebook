@@ -26,16 +26,16 @@ const contactsSlice = createSlice({
         setFilter: (state, action) => {
             state.filter = action.payload;
         },
-        // extraReducers: (builder) => {
-        //     builder
-        //         .addCase(fetchContacts.pending, (state) => {
-        //             state.isLoading = true;
-        //         })
-        //         .addCase(fetchContacts.fulfilled, (state, action) => {
-        //             state.items = action.payload;
-        //             state.isLoading = false;
-        //         })
-        // }
+        extraReducers: (builder) => {
+            builder
+                .addCase(fetchContacts.pending, (state) => {
+                    state.isLoading = true;
+                })
+                .addCase(fetchContacts.fulfilled, (state, action) => {
+                    state.items = action.payload;
+                    state.isLoading = false;
+                })
+        }
     }
 });
 
