@@ -4,13 +4,13 @@ import { MdSearch } from "react-icons/md";
 import "./FilterContacts.css";
 
 export const FilterContacts = () => {
-    const filter = useSelector((state) => state.contacts.filter);
-
+     const filter = useSelector((state) => state.contacts.filter);
     const dispatch = useDispatch();
 
     const onFilterChange = (filter) => {
         dispatch(setFilter(filter))
     }
+
     return (
         <>
             <h3>Find contacts by name</h3>

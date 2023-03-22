@@ -26,7 +26,7 @@ const CreateContacts = () => {
             if (contacts.some(el => el.name.toLowerCase() === newContactName.toLowerCase())) {
                 alert(`${newContactName} is already in contacts`)
             } else {
-                const newContact = { id: nanoid(), name: newContactName, number: newContactNumb }
+                const newContact = { id: nanoid(), name: newContactName, phone: newContactNumb }
                 dispatch(addContact(newContact));
                 setNewContactName('');
                 setNewContactNumb('');

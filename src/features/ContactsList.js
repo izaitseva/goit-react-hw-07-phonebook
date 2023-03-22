@@ -14,7 +14,6 @@ const ContactsList = () => {
 
     return (
         <>
-
             {filteredContacts && filteredContacts.length > 0 ? (
                 <>
                     <h3>Contacts</h3>
