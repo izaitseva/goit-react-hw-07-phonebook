@@ -9,7 +9,7 @@ const CreateContacts = () => {
 
     const [newContactNumb, setNewContactNumb] = useState("");
     const [newContactName, setNewContactName] = useState("");
-    const contacts = useSelector((state => state.contacts.contacts));
+    const contacts = useSelector((state => state.contacts.contacts.items));
 
     const dispatch = useDispatch();
 
