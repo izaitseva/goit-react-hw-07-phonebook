@@ -17,11 +17,6 @@ const contactsSlice = createSlice({
         addContact: (state, action) => {
             state.contacts.items.push(action.payload);
         },
-        // deleteContact: (state, action) => {
-        //     state.contacts.items = state.contacts.items.filter(
-        //         (contact) => contact.id !== action.payload
-        //     );
-        // },
         setFilter: (state, action) => {
             state.filter = action.payload;
         },
@@ -42,12 +37,9 @@ const contactsSlice = createSlice({
                 state.contacts.error = action.error.message;
             })
             .addCase(deleteContact.fulfilled, (state, action) => {
-                console.log(state);
                 state.contacts.items = state.contacts.items.filter(
                     (contact) => contact.id !== action.payload
                 );
-                // const i = state.contacts.items.findIndex(({ id }) => id === action.payload)
-                // state.contacts.items.splice(i, 1);
             })
     }
 });
