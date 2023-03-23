@@ -22,4 +22,15 @@ export const deleteContact = createAsyncThunk('contacts/deleteContact',
         } catch (error) {
             return thunkApi.rejectWithValue(error.message);
         }
+    });
+
+export const addContact = createAsyncThunk('contacts/addContact',
+    async (contact, thunkApi) => {
+
+        try {
+            const response = await axios.post(`/contacts`, contact);
+            return response.data
+        } catch (error) {
+            return thunkApi.rejectWithValue(error.message);
+        }
     })

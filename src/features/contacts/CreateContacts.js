@@ -1,7 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { BsPersonFillAdd } from "react-icons/bs";
 import { useState } from "react";
-import { addContact } from "../../store/contacts.slice";
+import { addContact } from "store/contactsAPI";
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateContacts.css";
 
